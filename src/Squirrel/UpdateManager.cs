@@ -142,10 +142,11 @@ namespace Squirrel
 
         public void Dispose()
         {
-            var disp = Interlocked.Exchange(ref updateLock, null);
-            if (disp != null) {
-                disp.Dispose();
+            if (updateLock != null)
+            {
+                updateLock.Dispose();
             }
+            Interlocked.Exchange(ref updateLock, null);
         }
 
         public static void RestartApp(string exeToStart = null, string arguments = null)
@@ -172,9 +173,6 @@ namespace Squirrel
 
         ~UpdateManager()
         {
-            if (updateLock != null) {
-                throw new Exception("You must dispose UpdateManager!");
-            }
         }
 
         Task<IDisposable> acquireUpdateLock()

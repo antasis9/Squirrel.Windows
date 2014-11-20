@@ -532,7 +532,8 @@ namespace Squirrel
                 throw new Exception("Couldn't acquire lock, is another instance running");
             }
 
-            var handle = Disposable.Create(() => {
+            handle = Disposable.Create(() =>
+            {
                 fh.Dispose();
                 File.Delete(path);
             });
@@ -544,14 +545,15 @@ namespace Squirrel
                 return;
             }
 
-            var disp = Interlocked.Exchange(ref handle, null);
-            if (disp != null) disp.Dispose();
+            if (handle != null)
+            {
+                handle.Dispose();
+            }
+            Interlocked.Exchange(ref handle, null);
         }
 
         ~SingleGlobalInstance()
         {
-            if (handle == null) return;
-            throw new AbandonedMutexException("Leaked a Mutex!");
         }
     }
 
