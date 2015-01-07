@@ -1,0 +1,8 @@
+﻿<Window x:Class="Setup.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="설치를 시작합니다." Click="Button_Click"/>
+    </Grid>
+</Window>

@@ -84,7 +84,7 @@ int CUpdateRunner::ExtractUpdaterAndRun(wchar_t* lpCommandLine)
 
 	// nfi if the zip extract actually worked, check for Update.exe
 	wchar_t updateExePath[MAX_PATH];
-	swprintf_s(updateExePath, L"%s\\%s", targetDir, L"Update.exe");
+	swprintf_s(updateExePath, L"%s\\%s", targetDir, L"Setup.Wpf.exe");
 
 	if (GetFileAttributes(updateExePath) == INVALID_FILE_ATTRIBUTES) {
 		goto failedExtract;
@@ -115,7 +115,7 @@ int CUpdateRunner::ExtractUpdaterAndRun(wchar_t* lpCommandLine)
 
 	if (dwExitCode != 0) {
 		DisplayErrorMessage(CString(
-			L"There was an error while installing the application. " 
+			L"There was an error while installing the application. "
 			L"Check the setup log for more information and contact the author."), logFile);
 	}
 
@@ -125,9 +125,9 @@ int CUpdateRunner::ExtractUpdaterAndRun(wchar_t* lpCommandLine)
 
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
-	return (int) dwExitCode;
+	return (int)dwExitCode;
 
 failedExtract:
 	DisplayErrorMessage(CString(L"Failed to extract installer"), NULL);
-	return (int) dwExitCode;
+	return (int)dwExitCode;
 }
