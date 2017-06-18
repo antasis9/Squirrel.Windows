@@ -38,9 +38,9 @@ namespace Squirrel
             Contract.Requires(!String.IsNullOrEmpty(urlOrPath));
             Contract.Requires(!String.IsNullOrEmpty(applicationName));
 
-	if(true) {
+	if (true) {
             updateUrlOrPath = urlOrPath;
-}
+	}
             this.applicationName = applicationName;
             this.appFrameworkVersion = appFrameworkVersion;
 
